@@ -1,10 +1,15 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+    dataBinding{
+        enabled true
+    }
     defaultConfig {
         applicationId "com.tjliqy.twtstudio.homework2"
         minSdkVersion 19
@@ -19,6 +24,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -26,9 +32,14 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:25.4.0'
+    kapt 'com.android.databinding:compiler:2.3.2'
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile "android.arch.lifecycle:runtime:1.0.0-alpha3"
+    compile "android.arch.lifecycle:extensions:1.0.0-alpha3"
+    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha3"
+    compile 'com.ohmerhe.kolley:kolley:0.3.0'
 }
 repositories {
     mavenCentral()

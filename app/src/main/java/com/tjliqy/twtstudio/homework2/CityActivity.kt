@@ -59,7 +59,7 @@ class CityActivity : AppCompatActivity() {
             navigateBack(bundle)
         }
         add_city_button.setOnClickListener {
-            navigate<SearchActivity>(0)
+            navigate<SearchActivity>(null,0)
         }
 
 //        myAdapter = MyAdapter(cities as Array<String?>, areaIds as Array<String?>, delete_city_button)

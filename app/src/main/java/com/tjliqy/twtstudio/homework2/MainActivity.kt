@@ -16,21 +16,32 @@ import org.json.JSONArray
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.IntentFilter
+import android.databinding.DataBindingUtil
+import com.google.gson.GsonBuilder
+import com.ohmerhe.kolley.request.Http
+import com.tjliqy.twtstudio.homework2.databinding.ActivityMainBinding
+import java.nio.charset.Charset
 
 
 class MainActivity : AppCompatActivity() {
-    private val url = "http://api.jisuapi.com/weather/query?appkey=8de28bcece446885&city="
+
+    var weather: Weather = Weather("", "", Weather.Result("", "26", "", "", "", ""))
+    var weather2: Weather = Weather("", "", Weather.Result("", "22", "", "", "", ""))
+    lateinit var binding:ActivityMainBinding
+    private val baseUrl = "http://api.jisuapi.com/weather/query?appkey=8de28bcece446885&city="
     private var defaultName = "天津"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.data = weather
         city_button.setOnClickListener {
-            navigate<CityActivity>(null,1)
+            navigate<CityActivity>(null, 1)
         }
         val getWeather = Getweather()
-        getWeather.execute(url, defaultName)
 
+//        getWeather.execute(url, defaultName)
+        getWeather(defaultName)
         //启动广播接收器
         val inf = IntentFilter()
         inf.addAction("com.weather.refresh")
@@ -53,8 +64,28 @@ class MainActivity : AppCompatActivity() {
             }
             toast(bundle?.getString("city"))
             val getWeather = Getweather()
-            getWeather.execute(url, defaultName)
+//            getWeather.execute(url, defaultName)
+            getWeather(defaultName)
+
         }
+    }
+
+    private fun getWeather(cityId: String){
+        Http.get {
+            url = baseUrl + cityId
+            tag = this@MainActivity
+            onSuccess { bytes ->
+                val json = bytes.toString(Charset.defaultCharset())
+                weather = GsonBuilder().create()
+                        .fromJson(json, Weather::class.java)
+                weather.notifyChange()
+
+            }
+        }
+    }
+
+    private fun changeData(weather: Weather) {
+        this.weather.result = weather.result
     }
 
     private inner class Getweather : AsyncTask<String, String, String>() {
@@ -126,7 +157,9 @@ class MainActivity : AppCompatActivity() {
             if (action == "com.weather.refresh") {
                 //Toast.makeText(application, "refresh", Toast.LENGTH_LONG).show()
                 val getweather = Getweather()
-                getweather.execute(url, defaultName)
+//                getweather.execute(url, defaultName)
+                getWeather(defaultName)
+
             }
         }
     }
