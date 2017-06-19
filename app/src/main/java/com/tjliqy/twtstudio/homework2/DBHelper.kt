@@ -35,12 +35,6 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "test.db", null, 1)
             "create table cities(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "cityname TEXT NOT NULL);"
 
-    public @Synchronized fun getInstance(context: Context): DBHelper {
-        if (dbHelper == null) {
-            dbHelper = DBHelper(context)
-        }
-        return dbHelper!!
-    }
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(createDBSql)

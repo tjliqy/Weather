@@ -39,6 +39,8 @@ dependencies {
     compile "android.arch.lifecycle:runtime:1.0.0-alpha3"
     compile "android.arch.lifecycle:extensions:1.0.0-alpha3"
     annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha3"
+    compile "android.arch.persistence.room:runtime:1.0.0-alpha3"
+
     compile 'com.ohmerhe.kolley:kolley:0.3.0'
 }
 repositories {

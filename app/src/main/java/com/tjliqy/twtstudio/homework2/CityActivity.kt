@@ -42,11 +42,6 @@ class CityActivity : AppCompatActivity() {
         changeAdapter(dbHelper!!.queryAllCities())
 
 
-//        for (city in cities) {
-//            val listem = HashMap<String, Any>()
-//            listem.put("name", city)
-//            listems.add(listem)
-//        }
         city_listview.adapter = SimpleAdapter(application, listems,
                 R.layout.activity_search_listview_item, arrayOf("name"),
                 intArrayOf(R.id.result_text))

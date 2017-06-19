@@ -1,19 +1,34 @@
 package com.tjliqy.twtstudio.homework2
 
-import android.databinding.BaseObservable
-import android.databinding.Bindable
-import java.sql.ClientInfoStatus
 import java.util.*
 
 /**
  * Created by tjliqy on 2017/6/18.
  */
-data class Weather(var status: String, var msg: String, @Bindable var result: Result) : BaseObservable() {
+data class Weather(var status: String = "", var msg: String = "", var result: Result = Weather.Result()) {
     data class Result(
-            @Bindable var temphigh: String,
-            @Bindable var templow: String,
-            var temp: String,
-            var city: String,
-            var week: String,
-            var weather: String):BaseObservable()
+            var temphigh: String = "",
+            var templow: String = "",
+            var temp: String = "",
+            var city: String = "",
+            var cityId: String = "",
+            var date: String = "",
+            var week: String = "",
+            var weather: String = "",
+            var humidity: String = "",
+            var pressure: String = "",
+            var daily: LinkedList<Daily> = LinkedList<Result.Daily>()) {
+        data class Daily(
+                var week: String = "",
+                var day: DayOrNight = Daily.DayOrNight(),
+                var night: DayOrNight = Daily.DayOrNight(),
+                var date: String = ""
+        ) {
+            data class DayOrNight(
+                    var weather: String = "",
+                    var temphigh: String = "",
+                    var templow: String = ""
+            )
+        }
+    }
 }

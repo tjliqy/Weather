@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="data" type="com.tjliqy.twtstudio.homework2.Weather" />
+        <variable name="data" type="com.tjliqy.twtstudio.homework2.MainViewModel" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                     android:id="@+id/lowest_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{data.result.templow}"
+                    android:text="@{`lowest:`+data.tempLow}"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="15"
+                    android:text="@{data.temp + `℃`}"
                     android:textColor="@color/black"
                     android:textSize="40sp" />
 
@@ -61,7 +61,7 @@
                     android:id="@+id/highest_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/highest"
+                    android:text="@{`highest:`+data.tempHigh}"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/info_left"
+                    android:text="@{data.infoLeft}"
                     android:textColor="@color/black" />
 
                 <ImageView
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/info_right"
+                    android:text="@{data.infoRight}"
                     android:textColor="@color/black" />
             </LinearLayout>
         </LinearLayout>
@@ -127,7 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/wendu"
+                    android:text="@{data.weather1}"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -135,7 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/xing"
+                    android:text="@{data.date1}"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -158,7 +158,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/wendu"
+                    android:text="@{data.weather2}"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -166,7 +166,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/xing"
+                    android:text="@{data.date2}"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -189,7 +189,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/wendu"
+                    android:text="@{data.weather3}"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -197,7 +197,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/xing"
+                    android:text="@{data.date3}"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -220,7 +220,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/wendu"
+                    android:text="@{data.weather4}"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -228,7 +228,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/xing"
+                    android:text="@{data.date4}"
                     android:textColor="@color/black" />
             </LinearLayout>
         </LinearLayout>
